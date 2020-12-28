@@ -230,7 +230,7 @@ CREATE TABLE Food (
 GO
 
 CREATE TABLE DietaryRequirementsHasFood (
-    ID int PRIMARY KEY (FoodID,DietaryRequirementsID)NOT NULL,
+    ID int PRIMARY KEY NOT NULL IDENTITY(1,1),
 	FoodID int FOREIGN KEY REFERENCES Food(ID),
 	DietaryRequirementsID int,
 );
