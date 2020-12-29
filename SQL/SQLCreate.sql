@@ -229,13 +229,6 @@ CREATE TABLE Food (
 );
 GO
 
-CREATE TABLE DietaryRequirementsHasFood (
-    ID int PRIMARY KEY NOT NULL IDENTITY(1,1),
-	FoodID int FOREIGN KEY REFERENCES Food(ID),
-	DietaryRequirementsID int,
-);
-GO
-
 CREATE TABLE DietaryRequirements (
     ID int PRIMARY KEY NOT NULL IDENTITY(1,1),
 	DietaryName varchar(255),
@@ -244,9 +237,13 @@ CREATE TABLE DietaryRequirements (
 );
 GO
 
-ALTER TABLE DietaryRequirementsHasFood ADD FOREIGN KEY (DietaryRequirementsID) REFERENCES DietaryRequirements(ID);
-
+CREATE TABLE DietaryRequirementsHasFood (
+	FoodID int FOREIGN KEY REFERENCES Food(ID),
+	DietaryRequirementsID int FOREIGN KEY REFERENCES DietaryRequirements(ID),
+	PRIMARY KEY(FoodID,DietaryRequirementsID)
+);
 GO
+
 
 CREATE TABLE Breed (
     ID int PRIMARY KEY NOT NULL IDENTITY(1,1),
